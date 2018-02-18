@@ -1,8 +1,10 @@
 # Mines
 
-Mines Game C# Windows Forms Application
+Mines Game - C# - Visual Studio - Windows Forms Application
 
 :moneybag: or :bomb:
+
+Mines game is a single-player casino game. The objective of the game is to bet your coins to win more without detonating any mine.
 
 Print screens:
 
