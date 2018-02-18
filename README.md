@@ -2,6 +2,8 @@
 
 Mines Game C# Windows Forms Application
 
+:moneybag: or :bomb:
+
 Print screens:
 
 
