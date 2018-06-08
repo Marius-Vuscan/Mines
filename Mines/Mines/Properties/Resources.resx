@@ -121,4 +121,16 @@
   <data name="min" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\min.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="MineButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MineButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MisteryButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MisteryButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MisteryButtonBack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MisteryButtonBack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MisteryCoins" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\MisteryCoins.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -82,5 +82,17 @@
   <ItemGroup>
     <None Include="Resources\min.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MisteryButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MisteryButtonBack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MineButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MisteryCoins.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

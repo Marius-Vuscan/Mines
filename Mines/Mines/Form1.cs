@@ -19,7 +19,7 @@ namespace Mines
             InitializeComponent();
             //Creator: Marius Vușcan
             //    * = Bomb
-            hide();
+            block();
             draw();
         }
         public void draw()
@@ -30,25 +30,27 @@ namespace Mines
             {
                 element.Click += delegate
                 {
-                    element.ForeColor = System.Drawing.Color.SteelBlue;
                     check(element);
                 };
             }
         }
-        public void hide()
+        public void block()
         {
             Button[] B = { button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, button13, button14, button15, button16, button17, button18, button19, button20, button21, button22, button23, button24, button25 };
             for (int i = 0; i < 25; i++)
             {
-                B[i].Visible = false;
+                B[i].Enabled = false;
+                B[i].BackgroundImage = Properties.Resources.MisteryButton;
+                B[i].Text = "";
             }
+            Shuffle();
         }
         public void show()
         {
             Button[] B = { button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, button13, button14, button15, button16, button17, button18, button19, button20, button21, button22, button23, button24, button25 };
             for (int i = 0; i < 25; i++)
             {
-                B[i].Visible = true;
+                B[i].Enabled = true;
             }
         }
         public void Shuffle()
@@ -57,9 +59,9 @@ namespace Mines
             for (int i = 0; i < 25; i++)
             {
                 int j = i + r.Next(25 - i);
-                string x = B[j].Text;
-                B[j].Text = B[i].Text;
-                B[i].Text = x;
+                var x = B[j].Tag;
+                B[j].Tag = B[i].Tag;
+                B[i].Tag = x;
             }
         }
         public void Matrix()
@@ -73,18 +75,13 @@ namespace Mines
             for (int i = 0; i < 25; i++)
             {
                 string d = r.Next(1, x + 1).ToString();
-                B[i].Text = "+" + d;
+                B[i].Tag = "+" + d;
 
             }
             //add mines
             for (i = 0; i < mines; i++)
             {
-                B[i].Text = "*";
-            }
-            //hide
-            for (i = 0; i < 25; i++)
-            {
-                B[i].ForeColor = System.Drawing.Color.White;
+                B[i].Tag = "*";
             }
             Shuffle();
         }
@@ -109,13 +106,13 @@ namespace Mines
         }
         public void check(Button b)
         {
-            //check if is mine
-            if (b.Text == "*")
+            if (b.Tag.ToString() == "*")//check if is mine
             {
+                b.BackgroundImage = Properties.Resources.MineButton;
                 MessageBox.Show("Boom!");
                 Matrix();
-                hide();
-                if (CoinsLabel.Text == "0")
+                block();
+                if (int.Parse(CoinsLabel.Text)+int.Parse(BankLabel.Text) < 50)
                 {
                     CoinsAddButton.Visible = true;
                 }
@@ -126,7 +123,9 @@ namespace Mines
             else
             {
                 //add in stake
-                StakeLabel.Text = (int.Parse(StakeLabel.Text) + int.Parse(b.Text)).ToString();
+                b.BackgroundImage = Properties.Resources.MisteryButtonBack;
+                b.Text = b.Tag.ToString();
+                StakeLabel.Text = (int.Parse(StakeLabel.Text) + int.Parse(b.Tag.ToString())).ToString();
             }
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -148,7 +147,7 @@ namespace Mines
         {
             CoinsLabel.Text = (int.Parse(CoinsLabel.Text) + int.Parse(StakeLabel.Text)).ToString();
             Matrix();
-            hide();
+            block();
             stars();
             PlayButton.Visible = true;
             MaxButton.Visible = true;
@@ -176,8 +175,31 @@ namespace Mines
                     PlayButton.Visible = false;
                     MaxButton.Visible = false;
                     TakeButton.Visible = true;
+                    GamesCount.Text = (int.Parse(GamesCount.Text) + 1).ToString();
+                    if (int.Parse(GamesCount.Text) % 3 == 0)
+                        GamesCount.ForeColor = Color.Gold;
+                    else
+                        GamesCount.ForeColor = Color.White;
                 }
             }
+        }
+
+        private void button26_Click(object sender, EventArgs e)//DEPOSIT
+        {
+            if (int.Parse(GamesCount.Text) % 3 == 0)
+            {
+                int fiftyPercent = int.Parse(CoinsLabel.Text) / 2;
+                BankLabel.Text = (int.Parse(BankLabel.Text) + fiftyPercent).ToString();
+                CoinsLabel.Text = (int.Parse(CoinsLabel.Text) - fiftyPercent).ToString();
+            }
+            else
+                MessageBox.Show("You can not deposit coins now!");
+        }
+
+        private void button27_Click(object sender, EventArgs e)//WITHDRAW
+        {
+             CoinsLabel.Text = (int.Parse(CoinsLabel.Text) + int.Parse(BankLabel.Text)).ToString();
+             BankLabel.Text = "0";
         }
     }
 }
